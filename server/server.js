@@ -4,6 +4,16 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import helmet from 'helmet';
+import compression from 'compression';
+import dns from 'dns';
+
+// Force DNS lookup to use Google/Cloudflare DNS to bypass local ISP/Router SRV query blockages
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch (e) {
+  // fallback if DNS setServers fails in custom runtime contexts
+}
 
 // Models
 import User from './models/User.js';
@@ -11,17 +21,46 @@ import Project from './models/Project.js';
 import Booking from './models/Booking.js';
 import Message from './models/Message.js';
 
+// RAG Routes
+import apiRouter from './routes/apiRouter.js';
+
 dotenv.config();
+
+// Startup Environment Validation (Feature 15)
+const requiredEnv = ['MONGO_URI', 'JWT_SECRET'];
+const missing = requiredEnv.filter(name => !process.env[name]);
+
+const provider = process.env.AI_PROVIDER || 'gemini';
+if (provider === 'gemini' && !process.env.GEMINI_API_KEY) {
+  missing.push('GEMINI_API_KEY (required when AI_PROVIDER is "gemini")');
+} else if (provider === 'openai' && !process.env.OPENAI_API_KEY) {
+  missing.push('OPENAI_API_KEY (required when AI_PROVIDER is "openai")');
+}
+
+if (missing.length > 0) {
+  console.error('\x1b[31m[STARTUP ERROR] Critical environment variables are missing:\x1b[0m');
+  missing.forEach(name => console.error(`  - ${name}`));
+  console.warn('\x1b[33m[STARTUP WARNING] System will launch, but some RAG features may fail to execute.\x1b[0m\n');
+} else {
+  console.log('\x1b[32m[STARTUP SUCCESS] Environment variables validated successfully.\x1b[0m');
+}
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+app.use(helmet({
+  crossOriginResourcePolicy: false
+}));
+app.use(compression());
 app.use(cors({
   origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
   credentials: true
 }));
 app.use(express.json());
+
+// RAG v1 API Routes
+app.use('/api/v1', apiRouter);
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/amarix')
@@ -287,6 +326,26 @@ app.delete('/api/messages/:id', authenticateToken, async (req, res) => {
 
 
 // Start server
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Express API Server running on port ${PORT}`);
 });
+
+// Graceful Shutdown Handler
+const shutdownGracefully = (signal) => {
+  console.log(`\n[${signal}] signal received. Shutting down Express server gracefully...`);
+  server.close(() => {
+    console.log('HTTP server closed.');
+    mongoose.connection.close()
+      .then(() => {
+        console.log('MongoDB connection closed.');
+        process.exit(0);
+      })
+      .catch((err) => {
+        console.error('Error closing MongoDB connection:', err.message);
+        process.exit(1);
+      });
+  });
+};
+
+process.on('SIGTERM', () => shutdownGracefully('SIGTERM'));
+process.on('SIGINT', () => shutdownGracefully('SIGINT'));

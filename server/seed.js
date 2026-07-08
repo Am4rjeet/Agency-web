@@ -1,6 +1,14 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
+import dns from 'dns';
+
+// Force DNS lookup to use Google/Cloudflare DNS to bypass local ISP/Router SRV query blockages
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch (e) {
+  // fallback if DNS setServers fails in custom runtime contexts
+}
 
 // Models
 import User from './models/User.js';

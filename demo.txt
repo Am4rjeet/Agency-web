@@ -1,0 +1,80 @@
+======================================================================
+AMARIX SOLUTIONS - OFFICIAL AGENCY KNOWLEDGE BASE & FAQ
+======================================================================
+
+1. ABOUT THE AGENCY & LEADERSHIP
+----------------------------------------------------------------------
+* Company Name: Amarix Solutions
+* Owner & Founder: Amarjeet
+* Mission: To empower businesses by building elite headless web platforms, custom AI integrations, and automated RAG pipelines.
+* Operations: We operate globally as a fully remote team, offering world-class technology consulting and implementation.
+* Core Philosophy: High-speed frontend layouts combined with robust, secure backend intelligence.
+
+2. CORE SERVICES & EXPERTISE
+----------------------------------------------------------------------
+* Headless & Modern Web Development:
+  - High-performance React, Next.js, and Vite web applications.
+  - Pixel-perfect responsive layouts with premium CSS aesthetics and micro-animations.
+  - Static site generation (SSG) and server-side rendering (SSR) for sub-second load times.
+
+* AI Solutions & Custom Agents:
+  - Retrieval-Augmented Generation (RAG) pipelines using vector databases.
+  - Custom AI chatbots for customer support, lead generation, and context search.
+  - Fine-tuned workflow automation agents using n8n, Make, or custom Node.js/Python scripts.
+
+* Integrations & Database Engineering:
+  - Vector database integrations including Qdrant, Pinecone, and pgvector.
+  - Document databases and SQL setups (MongoDB, PostgreSQL, MySQL).
+  - Custom CRM and API integrations (HubSpot, Salesforce, Stripe, custom REST endpoints).
+
+3. ESTIMATED TURNAROUND TIMES
+----------------------------------------------------------------------
+* Landing Pages & Simple Portfolios: 1 to 2 weeks.
+* Standard SaaS Frontends & Full Websites: 2 to 4 weeks (our sweet spot).
+* Advanced AI Agents & Enterprise RAG Pipelines: 4 to 6 weeks.
+* Express Delivery Option: Available for select projects with a 50% rush fee, reducing timelines by half.
+
+4. PRICING & PROJECT ESTIMATES
+----------------------------------------------------------------------
+* Minimum Project Size: Our projects typically start at $1,000 USD.
+* Custom Landing Pages: Starting from $1,200 USD.
+* SaaS MVP / Full-Stack Applications: Starting from $3,500 USD.
+* Custom AI Agent / RAG Bot System: Starting from $2,500 USD.
+* Monthly Retainer / Maintenance: Custom quotes starting at $400 USD/month.
+
+5. CLIENT WORKFLOW & PROCESS
+----------------------------------------------------------------------
+* Phase 1: Discovery & Strategy - Aligning on project goals, tech stack, and roadmap.
+* Phase 2: Design & Prototyping - UI/UX layout mockups for client feedback and approval.
+* Phase 3: Development & AI Setup - Writing clean code, configuring databases, and building AI pipelines.
+* Phase 4: Quality Assurance (QA) - Rigorous testing of responsiveness, API logic, and model prompt safety.
+* Phase 5: Deployment & Handover - Launching the platform and handing over code repositories.
+
+6. FREQUENTLY ASKED QUESTIONS (FAQ)
+----------------------------------------------------------------------
+Q: Who owns the source code once the project is finished?
+A: You do. The client owns 100% of the source code, assets, and intellectual property upon final project payment.
+
+Q: Can you integrate AI systems with our existing website or database?
+A: Yes. We build custom RAG pipelines and middleware APIs that connect Gemini or OpenAI models directly to your existing databases (MongoDB, PostgreSQL, etc.) and web layouts.
+
+Q: Do you offer post-launch maintenance?
+A: Yes, we offer monthly maintenance retainers covering security audits, package updates, AI model maintenance, and priority feature requests.
+
+Q: What LLMs and embedding providers do you support?
+A: We support Google Gemini (gemini-3.1-flash-lite, gemini-embedding-001), OpenAI (GPT-4o, text-embedding-3-small), and local/open-source models via Ollama (Llama 3, Nomic Embed).
+
+Q: How do you handle AI security and data privacy?
+A: Security is our top priority. We implement enterprise-grade encryption (TLS 1.3/AES-256) for data in transit and at rest. Client datasets and vector collections are fully sandboxed, and we strictly enforce policy controls to ensure your business data is never used to train public LLM models.
+
+Q: Tell me about your portfolio projects.
+A: Here are some of our highlight projects:
+1. NextGen Headless Storefront: A sub-second Next.js e-commerce layout with complete Stripe integration, resulting in a 40% increase in conversions.
+2. AutoRAG Support Agent: An automated customer support agent linking MongoDB with Qdrant vector databases, resolving 85% of customer queries instantly.
+3. SmartCRM Lead Pipeline: An n8n automation workflow connecting site forms directly to Salesforce CRM and triggering instant Slack alerts.
+
+7. CONTACT & CONSULTATION
+----------------------------------------------------------------------
+* Email Support: support@amarix.com
+* Booking Consultations: Use the bookings calendar tab on our dashboard to schedule a direct session with Amarjeet.
+* Response Time: We respond to all business emails within 24 hours.

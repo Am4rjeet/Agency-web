@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # 1. MongoDB Database Service
+  mongodb:
+    image: mongo:6.0
+    container_name: amarix-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  # 2. Qdrant Vector Database Service
+  qdrant:
+    image: qdrant/qdrant:v1.9.0
+    container_name: amarix-qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  # 3. MERN Express API Server Service
+  backend:
+    build: .
+    container_name: amarix-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+      - qdrant
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/amarix
+      - JWT_SECRET=amarixSecretTokenKey2026!
+      - AI_PROVIDER=gemini
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - VECTOR_DB=qdrant
+      - QDRANT_URL=http://qdrant:6333
+      - CHUNK_SIZE=800
+      - CHUNK_OVERLAP=150
+      - TOP_K=5
+      - SIMILARITY_THRESHOLD=0.5
+
+volumes:
+  mongo_data:
+    driver: local
+  qdrant_data:
+    driver: local

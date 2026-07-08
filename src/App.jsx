@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
+import FloatingAIChat from './components/FloatingAIChat';
 
 // Import Pages
 import Home from './pages/Home';
@@ -49,6 +50,9 @@ function App() {
         
         {/* Floating WhatsApp chat widget */}
         <FloatingWhatsApp />
+
+        {/* Floating AI Chatbot assistant widget */}
+        <FloatingAIChat />
         
       </div>
     </Router>
